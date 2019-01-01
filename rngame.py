@@ -57,8 +57,6 @@ def event():
 def good(eventid):
 	global health
 	global turn
-	#print ("This is a placeholder for a good event")
-	#print ("Event Id: ", eventid)
 	if eventid == 1:
 		print("Congrats! you managed to find more coffee rations!")
 		turn +=1
@@ -121,8 +119,6 @@ def good(eventid):
 def bad(eventid):
 	global health
 	global turn
-	#print ("This is a placeholder for a bad event")
-	#print ("Event Id: ", eventid)
 	if eventid == 1:
 		print ("You are struck with a massive meteor, Sustaining MASSIVE hull damage.")
 		num1 = random.randint(3, 10)
@@ -133,6 +129,7 @@ def bad(eventid):
 		turn -=20
 		a =  input("Press Enter to continue:")
 	elif eventid == 3:
+		#credit to https://stackoverflow.com/questions/19911346/create-a-typewriter-effect-animation-for-strings-in-python
 		line1 = "Congrats! \n You are caught in a meteor shower! \n your hull is torn to bits.\n"
 		for x in line1:
 			print(x, end='')
@@ -161,11 +158,6 @@ def display():
 	global turn
 	global health
 	call(["clear"])
-	#animation = cycle('[' + ' ' * n + '=' + ' ' * (6 - n) + ']' for n in range(7) + range(6, -1, -1))
-	#animation = ('[=      ]', '[ =     ]', '[  =    ]', '[   =   ]',
-         #         '[    =  ]', '[     = ]', '[      =]', '[      =]',
-         #         '[     = ]', '[    =  ]', '[   =   ]', '[  =    ]',
-         #         '[ =     ]', '[=      ]')
 	print ("   [\"")
 	print ("|||=======[]\"")
 	print ("|||------\___\"")
@@ -174,12 +166,6 @@ def display():
 	print ("Progress:",turn)
 	print ("Good Events:",goodevents)
 	print ("Bad Events:",badevents)
-	#for i in range(100):
-	#	sys.stdout.write('\b\b\b')
-	#	sys.stdout.write(animation[i % len(animation)])
-	#	sys.stdout.flush()
-	#	time.sleep(0.2)
-
 
 while turn < 100 and health > 0:
 	while turn == 0:
