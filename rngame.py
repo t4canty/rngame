@@ -2,7 +2,6 @@ import random
 import sys
 from subprocess import call
 import time
-from itertools import cycle
 
 turn = 0
 health = 100
