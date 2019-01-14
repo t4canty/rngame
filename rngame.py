@@ -2,17 +2,20 @@ import random
 import sys
 from subprocess import call
 import time
+from itertools import cycle
 
 turn = 0
 health = 100
 goodevents = 0
 badevents = 0
+upgrade1 = 0
+upgrade2 = 0
 def event():
 	global turn
 	global goodevents
 	global badevents
 	num1 = random.randint(0 , 100)
-	#num1 = 18
+	#num1 = 77
 	if num1 == 0: #1
 		bad(1)
 		badevents += 1
@@ -57,6 +60,8 @@ def event():
 def good(eventid):
 	global health
 	global turn
+	#print ("This is a placeholder for a good event")
+	#print ("Event Id: ", eventid)
 	if eventid == 1:
 		print("Congrats! you managed to find more coffee rations!")
 		turn +=1
@@ -76,7 +81,9 @@ def good(eventid):
 		health += health/2
 		a = input("Press Enter to continue")
 	elif eventid == 5:
-		print("You found an upgrade! Unfortunately this is not implemented. Sorry!")
+		print("You found an upgrade!")
+		a = random.randint(1, 2)
+		upgrade(a)
 		a = input("Press Enter to continue")
 	elif eventid == 6:
 		print("You find a  wormhole and are magically transported inside, allowing you to cross vast distances instatly!")
@@ -110,7 +117,9 @@ def good(eventid):
 			health = 100
 			a = input("Press Enter to continue")
 		elif a == 3:
-			print("Not implemented")
+			print ("The god waves his hand and suddenly an upgrade appears on your hull.")
+			a = random.randint(1, 2)
+			upgrade(a)
 			a = input("Press Enter to continue")
 		else:
 			print("The god is not amused. You see a flash of light, then you die.")
@@ -119,6 +128,8 @@ def good(eventid):
 def bad(eventid):
 	global health
 	global turn
+	#print ("This is a placeholder for a bad event")
+	#print ("Event Id: ", eventid)
 	if eventid == 1:
 		print ("You are struck with a massive meteor, Sustaining MASSIVE hull damage.")
 		num1 = random.randint(3, 10)
@@ -129,7 +140,6 @@ def bad(eventid):
 		turn -=20
 		a =  input("Press Enter to continue:")
 	elif eventid == 3:
-		#credit to https://stackoverflow.com/questions/19911346/create-a-typewriter-effect-animation-for-strings-in-python
 		line1 = "Congrats! \n You are caught in a meteor shower! \n your hull is torn to bits.\n"
 		for x in line1:
 			print(x, end='')
@@ -158,6 +168,11 @@ def display():
 	global turn
 	global health
 	call(["clear"])
+	#animation = cycle('[' + ' ' * n + '=' + ' ' * (6 - n) + ']' for n in range(7) + range(6, -1, -1))
+	#animation = ('[=      ]', '[ =     ]', '[  =    ]', '[   =   ]',
+         #         '[    =  ]', '[     = ]', '[      =]', '[      =]',
+         #         '[     = ]', '[    =  ]', '[   =   ]', '[  =    ]',
+         #         '[ =     ]', '[=      ]')
 	print ("   [\"")
 	print ("|||=======[]\"")
 	print ("|||------\___\"")
@@ -166,6 +181,26 @@ def display():
 	print ("Progress:",turn)
 	print ("Good Events:",goodevents)
 	print ("Bad Events:",badevents)
+	if upgrade1 == 1:
+		print ("You have an improved engine")
+	elif upgrade2 == 1:
+		print ("You have a regen hull!")
+	elif upgrade2 == 1 and upgrade1 == 1:
+		print ("You have a jacked ass ship")
+	else:
+		pass
+	#for i in range(100):
+	#	sys.stdout.write('\b\b\b')
+	#	sys.stdout.write(animation[i % len(animation)])
+	#	sys.stdout.flush()
+	#	time.sleep(0.2)
+def upgrade(a):
+	global upgrade1
+	global upgrade2
+	if a == 1:
+		upgrade1 = 1
+	elif a  == 2:
+		upgrade2 = 1
 
 while turn < 100 and health > 0:
 	while turn == 0:
@@ -199,7 +234,13 @@ while turn < 100 and health > 0:
 		display()
 		event()
 		time.sleep(0.5)
-		turn += 1
+		if upgrade2 == 1:
+			if health < 100:
+				health += 1
+		if upgrade1 == 1:
+			turn += 2
+		else:
+			turn += 1
 if health > 0:
 	display()
 	print("Congrats, you made it home!")
