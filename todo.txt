@@ -1,0 +1,18 @@
+-----------------------GAME-----------------------------
+Mechanics:
+player moves from star system to system, with each jump prompting player with menu() function.
+as player advances, gains wepons through shop, uses credits from battles to buy items. inventory is class based system, linked to the upgrade system closely. 
+//Should add private submethod called equip()?
+at stop, player can:
+1) buy items if beacon has shop (Calls shop())
+2) Veiw ship (Calls inventory())
+3) upgrade ship (calls upgrade())
+4) talk to crew (talks to crew, random encounter npc-style) (calls talk())
+5) back to beacon menu (calls veiw and planet)
+6) continue (ends turn and continues onto the next beacon)
+
+methods:
+menu(): called every beacon slow point (not in combat etc)
+veiw(): called every time the ship is show, shows stats ect
+shop(): Sells players items SUBMETHODS: buy(), item()
+
