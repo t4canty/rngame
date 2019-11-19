@@ -8,26 +8,26 @@ try:
     itemList = []
     if f1[0] != "--end items--\n":
         while f1[i] != "--end items--\n":
-            itemList.append(f1[0])
+            itemList.append(f1[i])
             i += 1
     i += 1
-    planetid = int(f1[i])
+    planetid = int(f1[i].rstrip("\n"))
     i += 1
-    name = f1[i]
+    name = f1[i].rstrip("\n")
     i += 1
-    health = int(f1[i])
+    health = int(f1[i].rstrip("\n"))
     i += 1
-    damage = int(f1[i])
+    damage = int(f1[i].rstrip("\n"))
     i += 1
-    progress = int(f1[i])
+    progress = int(f1[i].rstrip("\n"))
     i += 1
-    regen = int(f1[i])
+    regen = int(f1[i].rstrip("\n"))
     i += 1
-    thrust = int(f1[i])
+    thrust = int(f1[i].rstrip("\n"))
     i += 1
-    wepon = int(f1[i])
+    wepon = int(f1[i].rstrip("\n"))
     i += 1
-    credits = int(f1[i])
+    credits = int(f1[i].rstrip("\n"))
     f.close()
 except FileNotFoundError:
     itemList = []

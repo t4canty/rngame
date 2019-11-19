@@ -17,23 +17,23 @@ try:
             itemList.append(f1[i])
             i += 1
     i += 1
-    planetid = int(f1[i])
+    planetid = int(f1[i].rstrip("\n"))
     i += 1
-    name = f1[i]
+    name = f1[i].rstrip("\n")
     i += 1
-    health = int(f1[i])
+    health = int(f1[i].rstrip("\n"))
     i += 1
-    damage = int(f1[i])
+    damage = int(f1[i].rstrip("\n"))
     i += 1
-    progress = int(f1[i])
+    progress = int(f1[i].rstrip("\n"))
     i += 1
-    regen = int(f1[i])
+    regen = int(f1[i].rstrip("\n"))
     i += 1
-    thrust = int(f1[i])
+    thrust = int(f1[i].rstrip("\n"))
     i += 1
-    wepon = int(f1[i])
+    wepon = int(f1[i].rstrip("\n"))
     i += 1
-    credits = int(f1[i])
+    credits = int(f1[i].rstrip("\n"))
     f.close()
 except FileNotFoundError:
     itemList = []
@@ -94,12 +94,14 @@ def menu():
         travel()
     elif choice == "7":
         name = input("Input new name:")
+        name.rstrip("\n")
     elif choice == "8":
         save.save(itemList, planetid, name, health, damage, progress, regen, thrust, wepon, credits)
     elif choice == "9":
         sys.exit()
     else:
         print("Invalid choice")
+        sleep(1)
 
 
 def view():
@@ -312,72 +314,72 @@ def event():
     if num1 == 0:
         view()
         bad(1)
-        sleep(1)
+        sleep(0.5)
 
     elif 10 > num1 > 7:  # 2
         view()
         bad(2)
-        sleep(1)
+        sleep(0.5)
 
     elif 20 > num1 > 17:  # 3
         view()
         bad(3)
-        sleep(1)
+        sleep(0.5)
 
     elif 30 > num1 > 27:  # 3
         view()
         bad(4)
-        sleep(1)
+        sleep(0.5)
 
     elif 40 > num1 > 35:  # 5
         view()
         bad(5)
-        sleep(1)
+        sleep(0.5)
 
     elif 50 > num1 > 45:  # 5 total 20
         view()
         bad(6)
-        sleep(1)
+        sleep(0.5)
 
     elif 60 > num1 > 54:  # 6
         view()
         good(1)
-        sleep(1)
+        sleep(0.5)
 
     elif 70 > num1 > 66:  # 4
         view()
         good(2)
-        sleep(1)
+        sleep(0.5)
 
     elif 80 > num1 > 76 and num1 != 77:  # 3
         view()
         good(3)
-        sleep(1)
+        sleep(0.5)
 
     elif num1 == 77:  # 1
         view()
         good(7)
-        sleep(1)
+        sleep(0.5)
 
     elif 90 > num1 > 87:  # 3
         view()
         good(4)
-        sleep(1)
+        sleep(0.5)
 
     elif 100 > num1 > 98:  # 2
         view()
         good(5)
-        sleep(1)
+        sleep(0.5)
 
     elif num1 == 100:  # 1 total 20
         view()
         good(6)
-        sleep(1)
+        sleep(0.5)
 
     else:
         view()
         print ("Nothing happend.")
-        sleep(1)
+        sleep(0.5)
 
 
 def good(eventid):
@@ -401,7 +403,7 @@ def good(eventid):
     elif eventid == 4:
         print("You find some freindly traders who are willing to fix your ship and spare some hyperfuel!")
         progress += 3
-        health += health / 2
+        health += int(health / 2)
         a = input("Press Enter to continue")
     elif eventid == 5:
         print("You found an upgrade!")
