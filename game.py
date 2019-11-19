@@ -6,7 +6,7 @@ from subprocess import call
 from time import sleep, time
 import sys
 import clear
-import save
+import save, planets
 try:
     f = open("SaveGame.txt", "r")
     f1 = f.readlines()
@@ -277,8 +277,10 @@ def talk():
     print("Not implemented yet")
 
 
-def planet(planetid):
+def planet(Nplanetid):
     global progress
+    global planetid
+    planetid = Nplanetid
     if planetid == 0:
         global hasdock
         hasdock = 1
@@ -294,6 +296,8 @@ def planet(planetid):
             menu()
         else:
             travel()
+    elif planetid == 1:
+        planets.eldrannon()
 
 
 def travel():
@@ -304,8 +308,8 @@ def travel():
         clear.clear()
         event()
         progress += 1
-    #id = random.randint(1, 30)
-    id = 0
+    id = random.randint(0, 1)
+    #id = 0
     planet(id)
 def event():
     global progress
